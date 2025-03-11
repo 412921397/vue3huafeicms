@@ -13,7 +13,7 @@ export const searchFormConfig: IForm = {
     padding: '10px 40px'
   },
   colLayout: {
-    span: 6
+    span: 8
   },
   formItems: [
     {

@@ -3,6 +3,7 @@ interface DepartmentState {
   usermenus?: any[]
   categoryList?: { [key: string]: any }
   brandList: any[]
+  categoryTypeList: any[]
 }
 
 export { DepartmentState }

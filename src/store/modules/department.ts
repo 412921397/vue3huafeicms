@@ -14,7 +14,8 @@ export const useDepartmentStore = defineStore('department', {
   state: (): DepartmentState => ({
     usermenus: userMenu,
     categoryList: {},
-    brandList: []
+    brandList: [],
+    categoryTypeList: []
   }),
   getters: {},
   actions: {
@@ -50,6 +51,9 @@ export const useDepartmentStore = defineStore('department', {
       const res = await getBrand(name)
       this.brandList =
         res?.data?.map((item: any) => ({ id: item.brand, name: item.brand })) ??
+        []
+      this.categoryTypeList =
+        res?.data?.map((item: any) => ({ id: item.name, name: item.name })) ??
         []
     }
   }

@@ -5,7 +5,7 @@ import { IForm } from '@/base-ui/form'
 
 const departMentStore = useDepartmentStore()
 await departMentStore.getBrandAction('type')
-const { brandList } = storeToRefs(departMentStore)
+const { brandList, categoryTypeList } = storeToRefs(departMentStore)
 
 export const modalConfig: IForm = {
   formItems: [
@@ -64,6 +64,20 @@ export const modalConfig: IForm = {
         {
           required: true,
           message: '请选择品牌',
+          trigger: 'change'
+        }
+      ]
+    },
+    {
+      field: 'categoryType',
+      type: 'select',
+      label: '商品种类',
+      options: categoryTypeList.value,
+      placeholder: '请选择商品种类',
+      rules: [
+        {
+          required: true,
+          message: '请选择商品种类',
           trigger: 'change'
         }
       ]

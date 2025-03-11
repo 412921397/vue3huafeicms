@@ -9,6 +9,7 @@ export const contentTableConfig = {
     { prop: 'count', label: '商品数量(袋/瓶/箱)', minWidth: '100' },
     { prop: 'weight', label: '商品重量（KG）', minWidth: '100' },
     { prop: 'brand', label: '品牌', minWidth: '100' },
+    { prop: 'categoryType', label: '商品种类', minWidth: '100' },
     { prop: 'nameDesc', label: '商品描述', minWidth: '100' },
     // { prop: 'oldPrice', label: '原价格', minWidth: '100' },
     { prop: 'newPrice', label: '出售价格', minWidth: '100' },
