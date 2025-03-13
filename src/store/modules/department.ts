@@ -49,12 +49,22 @@ export const useDepartmentStore = defineStore('department', {
     // 查询品牌
     async getBrandAction(name: string) {
       const res = await getBrand(name)
-      this.brandList =
+      const brandArr =
         res?.data?.map((item: any) => ({ id: item.brand, name: item.brand })) ??
         []
-      this.categoryTypeList =
+      const typeListArr =
         res?.data?.map((item: any) => ({ id: item.name, name: item.name })) ??
         []
+      this.brandList =
+        brandArr?.filter(
+          (iten: any, index: number) =>
+            brandArr.findIndex((obj: any) => obj.id === iten.id) === index
+        ) ?? []
+      this.categoryTypeList =
+        typeListArr?.filter(
+          (iten: any, index: number) =>
+            typeListArr.findIndex((obj: any) => obj.id === iten.id) === index
+        ) ?? []
     }
   }
 })

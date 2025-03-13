@@ -1,13 +1,14 @@
+import { computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useDepartmentStore } from '@/store'
 
 import { IForm } from '@/base-ui/form'
 
 const departMentStore = useDepartmentStore()
-await departMentStore.getBrandAction('type')
 const { brandList, categoryTypeList } = storeToRefs(departMentStore)
 
-export const modalConfig: IForm = {
+export const modalConfig: ComputedRef<IForm> = computed(() => ({
   formItems: [
     {
       field: 'name',
@@ -145,4 +146,4 @@ export const modalConfig: IForm = {
   colLayout: { span: 24 },
   itemStyle: {},
   labelWidth: '160px'
-}
+}))

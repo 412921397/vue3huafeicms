@@ -1,13 +1,14 @@
+import { computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useDepartmentStore } from '@/store'
 
 import { IForm } from '@/base-ui/form'
 
 const departMentStore = useDepartmentStore()
-await departMentStore.getBrandAction('type')
 const { brandList } = storeToRefs(departMentStore)
 
-export const searchFormConfig: IForm = {
+export const searchFormConfig: ComputedRef<IForm> = computed(() => ({
   labelWidth: '120px',
   itemStyle: {
     padding: '10px 40px'
@@ -19,8 +20,8 @@ export const searchFormConfig: IForm = {
     {
       field: 'name',
       type: 'input',
-      label: '商品信息',
-      placeholder: '请输入商品信息'
+      label: '商品名称',
+      placeholder: '请输入商品名称'
     },
     {
       field: 'status',
@@ -39,4 +40,4 @@ export const searchFormConfig: IForm = {
       options: brandList.value
     }
   ]
-}
+}))

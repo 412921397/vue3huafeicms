@@ -24,11 +24,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/main/info',
         name: 'MainCategoryInfo',
         component: () => import('@/views/main/info/info.vue')
-      },
-      {
-        path: '/main/account',
-        name: 'MainAccountChange',
-        component: () => import('@/views/main/account-changes/index.vue')
       }
     ]
   },
