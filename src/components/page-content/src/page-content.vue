@@ -11,6 +11,14 @@
         <el-button type="primary" size="default" @click="handleNewClick">
           {{ btnName }}
         </el-button>
+        <el-button
+          v-if="isExcel"
+          type="primary"
+          size="default"
+          @click="handleExcel"
+        >
+          导出表格
+        </el-button>
       </template>
 
       <!-- 2.列中的插槽 -->
@@ -58,9 +66,10 @@
 import { defineComponent, computed, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { ElMessageBox } from 'element-plus'
+import * as XLSX from 'xlsx'
 
 import { useDepartmentStore } from '@/store'
-
+import { dateFormat } from '@/utils/date-format'
 import HyTable from '@/base-ui/table'
 
 export default defineComponent({
@@ -80,6 +89,10 @@ export default defineComponent({
     btnName: {
       type: String,
       default: '新增商品'
+    },
+    isExcel: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['newBtnClick', 'editBtnClick'],
@@ -137,6 +150,46 @@ export default defineComponent({
       emit('editBtnClick', item)
     }
 
+    const handleExcel = () => {
+      // 自定义标题
+      const headers = [
+        '店铺名',
+        '商品名称',
+        '商品数量（袋/瓶/箱）',
+        '商品重量（KG）',
+        '品牌',
+        '商品种类',
+        '商品描述',
+        '出售价格',
+        '商品状态',
+        '更新时间'
+      ]
+
+      // 将数据转换为二维数组
+      const worksheetData = dataList.value.map((item: any) => [
+        item.storeName,
+        item.name,
+        item.count,
+        item.weight,
+        item.brand,
+        item.categoryType,
+        item.nameDesc,
+        item.newPrice,
+        +item.status === 0 ? '库存' : '出库',
+        item.updateT ? dateFormat(item.updateT) : undefined
+      ])
+
+      // 创建工作簿
+      const workbook = XLSX.utils.book_new()
+
+      // 添加标题和数据
+      const worksheet = XLSX.utils.aoa_to_sheet([headers, ...worksheetData])
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
+
+      // 导出 Excel 文件
+      XLSX.writeFile(workbook, '数据.xlsx')
+    }
+
     return {
       pageInfo,
       dataList,
@@ -145,7 +198,8 @@ export default defineComponent({
       getPageData,
       handleNewClick,
       handleEditClick,
-      handleDeleteClick
+      handleDeleteClick,
+      handleExcel
     }
   }
 })

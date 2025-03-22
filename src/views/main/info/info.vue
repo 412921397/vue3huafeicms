@@ -8,6 +8,7 @@
     <page-content
       ref="pageContentRef"
       pageName="info"
+      :isExcel="true"
       :contentTableConfig="contentTableConfig"
       @newBtnClick="handleNewData"
       @editBtnClick="handleEditData"
