@@ -4,7 +4,8 @@ import { modalConfig } from './modal.config'
 export const contentTableConfig = {
   title: '商品列表',
   propList: [
-    { prop: 'name', label: '商品名称', minWidth: '80' },
+    { prop: 'storeName', label: '店铺名', minWidth: '80' },
+    { prop: 'name', label: '商品名称', minWidth: '100' },
     { prop: 'picture', label: '商品图片', minWidth: '100', slotName: 'image' },
     { prop: 'count', label: '商品数量(袋/瓶/箱)', minWidth: '100' },
     { prop: 'weight', label: '商品重量（KG）', minWidth: '100' },
@@ -19,6 +20,12 @@ export const contentTableConfig = {
       label: '创建时间',
       minWidth: '250',
       slotName: 'createAt'
+    },
+    {
+      prop: 'updateT',
+      label: '更新时间',
+      minWidth: '250',
+      slotName: 'updateAt'
     },
     { label: '操作', minWidth: '120', slotName: 'handler' }
   ],

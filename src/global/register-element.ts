@@ -37,7 +37,8 @@ import {
   ElTree,
   ElCard,
   ElUpload,
-  ElIcon
+  ElIcon,
+  ElMessage
 } from 'element-plus'
 
 const components = [
@@ -77,8 +78,7 @@ const components = [
   ElTree,
   ElCard,
   ElUpload,
-  ElIcon,
-  ElImage
+  ElIcon
 ]
 
 export default function (app: App): void {

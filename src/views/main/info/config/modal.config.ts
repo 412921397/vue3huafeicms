@@ -11,6 +11,19 @@ const { brandList, categoryTypeList } = storeToRefs(departMentStore)
 export const modalConfig: ComputedRef<IForm> = computed(() => ({
   formItems: [
     {
+      field: 'storeName',
+      type: 'input',
+      label: '店铺名',
+      placeholder: '请输入店铺名',
+      rules: [
+        {
+          required: true,
+          message: '请输入店铺名',
+          trigger: 'change'
+        }
+      ]
+    },
+    {
       field: 'name',
       type: 'input',
       label: '商品信息',
@@ -138,6 +151,19 @@ export const modalConfig: ComputedRef<IForm> = computed(() => ({
         {
           required: true,
           message: '请选择商品状态',
+          trigger: 'change'
+        }
+      ]
+    },
+    {
+      field: 'updateT',
+      type: 'datepicker',
+      label: '更新时间',
+      placeholder: '请选择更新时间',
+      rules: [
+        {
+          required: true,
+          message: '请选择更新时间',
           trigger: 'change'
         }
       ]

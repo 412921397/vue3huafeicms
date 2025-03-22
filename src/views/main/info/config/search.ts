@@ -14,9 +14,15 @@ export const searchFormConfig: ComputedRef<IForm> = computed(() => ({
     padding: '10px 40px'
   },
   colLayout: {
-    span: 8
+    span: 6
   },
   formItems: [
+    {
+      field: 'storeName',
+      type: 'input',
+      label: '店铺名',
+      placeholder: '请输入店铺名'
+    },
     {
       field: 'name',
       type: 'input',

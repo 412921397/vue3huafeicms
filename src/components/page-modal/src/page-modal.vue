@@ -44,7 +44,7 @@ import { ElMessage } from 'element-plus'
 import type { UploadProps } from 'element-plus'
 
 import { useDepartmentStore } from '@/store'
-import { currentDate } from '@/utils/date-format'
+import { currentDate, dateFormat } from '@/utils/date-format'
 
 import HyForm from '@/base-ui/form'
 
@@ -101,7 +101,8 @@ export default defineComponent({
               formData.value.id || props.defaultInfo.id,
               {
                 ...formData.value,
-                ...props.otherInfo
+                ...props.otherInfo,
+                updateT: dateFormat(formData.value.updateT)
               }
             )
           } else {

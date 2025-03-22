@@ -26,6 +26,9 @@
       <template #createAt="scope">
         <span>{{ $filters.formatTime(scope.row.createT) }}</span>
       </template>
+      <template #updateAt="scope">
+        <span>{{ $filters.formatTime(scope.row.updateT) }}</span>
+      </template>
       <template #handler="scope">
         <div class="handle-btns">
           <el-button type="primary" link @click="handleEditClick(scope.row)">
@@ -54,6 +57,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
+import { ElMessageBox } from 'element-plus'
 
 import { useDepartmentStore } from '@/store'
 
@@ -114,7 +118,15 @@ export default defineComponent({
 
     // 5.删除/编辑/新建操作
     const handleDeleteClick = (item: any) => {
-      departmentStore.removeCategoryAction(props.pageName, item.id)
+      ElMessageBox.confirm('确定删除这条信息？', '删除提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          departmentStore.removeCategoryAction(props.pageName, item.id)
+        })
+        .catch(() => false)
     }
 
     const handleNewClick = () => {

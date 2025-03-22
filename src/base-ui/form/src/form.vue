@@ -51,6 +51,7 @@
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
                   style="width: 100%"
+                  type="datetime"
                   v-bind="item.otherOptions"
                   :model-value="modelValue[`${item.field}`]"
                   @update:modelValue="handleValueChange($event, item.field)"

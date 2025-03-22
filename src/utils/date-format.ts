@@ -13,7 +13,7 @@ export function formatUtcString(
 }
 
 // 格式化日期
-export const dateFormat = (val: string, format = 'YYYY-MM-DD') => {
+export const dateFormat = (val: string, format = 'YYYY-MM-DD HH:mm:ss') => {
   return dayjs(val).format(format)
 }
 
