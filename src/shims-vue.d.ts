@@ -12,3 +12,4 @@ declare interface Fn<T = any, R = T> {
   (...arg: T[]): R
 }
 declare module '*.json'
+declare let $filters: any

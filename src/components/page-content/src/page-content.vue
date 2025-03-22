@@ -4,6 +4,7 @@
       :listData="dataList"
       :listCount="dataCount"
       v-bind="contentTableConfig"
+      :propList="contentTableConfig.propList"
       v-model:page="pageInfo"
     >
       <!-- 1.header中的插槽 -->
@@ -32,10 +33,14 @@
         </el-button>
       </template>
       <template #createAt="scope">
-        <span>{{ $filters.formatTime(scope.row.createT) }}</span>
+        <span>
+          {{ scope.row.createT ? dateFormat(scope.row.createT) : undefined }}
+        </span>
       </template>
       <template #updateAt="scope">
-        <span>{{ $filters.formatTime(scope.row.updateT) }}</span>
+        <span>
+          {{ scope.row.updateT ? dateFormat(scope.row.updateT) : undefined }}
+        </span>
       </template>
       <template #handler="scope">
         <div class="handle-btns">
@@ -80,7 +85,15 @@ export default defineComponent({
     contentTableConfig: {
       type: Object,
       required: true,
-      default: () => ({ propList: [] })
+      default: () => ({
+        propList: [
+          { prop: 'name', slotName: 'name' },
+          { prop: 'status', slotName: 'status' },
+          { prop: 'createAt', slotName: 'createAt' },
+          { prop: 'updateAt', slotName: 'updateAt' },
+          { prop: 'handler', slotName: 'handler' }
+        ]
+      })
     },
     pageName: {
       type: String,
@@ -199,7 +212,8 @@ export default defineComponent({
       handleNewClick,
       handleEditClick,
       handleDeleteClick,
-      handleExcel
+      handleExcel,
+      dateFormat
     }
   }
 })
